@@ -29,11 +29,10 @@ function LoginContainer() {
   }, [accounts]);
 
   const handleSubmit = ({ formValues }) => {
-    accounts.map((acc) => {
-      if ((acc.userName === formValues.userName) && (acc.password === formValues.password)){
-          return navigate("/welcome");
-      }
-    });
+    const result = accounts.filter((acc) => (acc.userName === formValues.userName) && (acc.password === formValues.password));
+    if(result.length) return navigate("/welcome");
+    else return window.alert("invalide email and password");
+
   };
 
   return (
